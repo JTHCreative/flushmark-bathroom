@@ -1,0 +1,106 @@
+import { useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents, Circle } from 'react-leaflet';
+import L from 'leaflet';
+import { Stars } from './StarRating.jsx';
+import { directionsUrl } from '../api.js';
+import { formatDistance } from './ListView.jsx';
+
+const DEFAULT_CENTER = [37.7793, -122.4193]; // San Francisco
+const DEFAULT_ZOOM = 13;
+
+function ratingClass(rating) {
+  if (rating == null) return 'pin-unrated';
+  if (rating >= 4) return 'pin-great';
+  if (rating >= 3) return 'pin-ok';
+  return 'pin-poor';
+}
+
+function pinIcon(bathroom, selected) {
+  const label = bathroom.avg_rating != null ? bathroom.avg_rating.toFixed(1) : '–';
+  return L.divIcon({
+    className: '',
+    html: `<div class="pin ${ratingClass(bathroom.avg_rating)} ${selected ? 'pin-selected' : ''}">
+             <span class="pin-emoji">🚻</span><span class="pin-rating">${label}</span>
+           </div>`,
+    iconSize: [46, 46],
+    iconAnchor: [23, 44],
+    popupAnchor: [0, -40],
+  });
+}
+
+function FlyToSelection({ bathrooms, selectedId }) {
+  const map = useMap();
+  useEffect(() => {
+    const b = bathrooms.find((x) => x.id === selectedId);
+    if (b) map.flyTo([b.lat, b.lng], Math.max(map.getZoom(), 15), { duration: 0.6 });
+  }, [selectedId]); // eslint-disable-line react-hooks/exhaustive-deps
+  return null;
+}
+
+function ClickToPlace({ enabled, onPick }) {
+  useMapEvents({
+    click(e) {
+      if (enabled) onPick({ lat: e.latlng.lat, lng: e.latlng.lng });
+    },
+  });
+  return null;
+}
+
+export default function MapView({
+  bathrooms,
+  selectedId,
+  onSelect,
+  userLocation,
+  addMode,
+  onPickLocation,
+}) {
+  return (
+    <MapContainer
+      center={DEFAULT_CENTER}
+      zoom={DEFAULT_ZOOM}
+      className={`map ${addMode ? 'map-adding' : ''}`}
+      scrollWheelZoom
+    >
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <FlyToSelection bathrooms={bathrooms} selectedId={selectedId} />
+      <ClickToPlace enabled={addMode} onPick={onPickLocation} />
+      {userLocation && (
+        <Circle
+          center={[userLocation.lat, userLocation.lng]}
+          radius={80}
+          pathOptions={{ color: '#2563eb', fillColor: '#3b82f6', fillOpacity: 0.35 }}
+        />
+      )}
+      {bathrooms.map((b) => (
+        <Marker
+          key={b.id}
+          position={[b.lat, b.lng]}
+          icon={pinIcon(b, b.id === selectedId)}
+          eventHandlers={{ click: () => onSelect(b.id) }}
+        >
+          <Popup>
+            <div className="popup">
+              <strong>{b.name}</strong>
+              <div className="popup-rating">
+                <Stars rating={b.avg_rating} size="sm" />
+                <span>({b.review_count})</span>
+              </div>
+              {b.distance_km != null && <div>{formatDistance(b.distance_km)} away</div>}
+              <div className="popup-actions">
+                <a href={directionsUrl(b.lat, b.lng)} target="_blank" rel="noreferrer">
+                  🧭 Directions
+                </a>
+                <button type="button" onClick={() => onSelect(b.id)}>
+                  Details
+                </button>
+              </div>
+            </div>
+          </Popup>
+        </Marker>
+      ))}
+    </MapContainer>
+  );
+}
