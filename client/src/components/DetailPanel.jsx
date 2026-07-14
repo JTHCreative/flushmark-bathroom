@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { ArrowLeft, Navigation } from 'lucide-react';
 import { fetchBathroom, createReview, directionsUrl } from '../api.js';
 import { Stars, StarInput } from './StarRating.jsx';
 import { AccessBadge, formatDistance } from './ListView.jsx';
+import { AmenityIcon } from '../icons.jsx';
 
 function ReviewForm({ bathroomId, onSubmitted }) {
   const [rating, setRating] = useState(0);
@@ -79,7 +81,7 @@ export default function DetailPanel({ bathroomId, meta, distanceKm, onClose, onD
   return (
     <div className="detail-panel">
       <button type="button" className="btn btn-back" onClick={onClose}>
-        ← Back to list
+        <ArrowLeft size={15} /> Back to list
       </button>
       {error && <div className="form-error">{error}</div>}
       {!bathroom && !error && <div className="muted detail-loading">Loading…</div>}
@@ -105,7 +107,7 @@ export default function DetailPanel({ bathroomId, meta, distanceKm, onClose, onD
             target="_blank"
             rel="noreferrer"
           >
-            🧭 Get directions
+            <Navigation size={15} /> Get directions
           </a>
 
           <h4>Amenities</h4>
@@ -115,8 +117,7 @@ export default function DetailPanel({ bathroomId, meta, distanceKm, onClose, onD
             <ul className="amenity-list">
               {bathroom.amenities.map((key) => (
                 <li key={key}>
-                  <span aria-hidden="true">{amenityByKey[key]?.icon}</span>{' '}
-                  {amenityByKey[key]?.label ?? key}
+                  <AmenityIcon amenity={key} size={17} /> {amenityByKey[key]?.label ?? key}
                 </li>
               ))}
             </ul>

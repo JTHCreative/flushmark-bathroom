@@ -1,3 +1,6 @@
+import { LocateFixed, X } from 'lucide-react';
+import { AmenityIcon } from '../icons.jsx';
+
 export default function FilterBar({ meta, filters, onChange, userLocation, onLocate, locating }) {
   const toggle = (key, value) => {
     const current = filters[key];
@@ -27,7 +30,7 @@ export default function FilterBar({ meta, filters, onChange, userLocation, onLoc
           disabled={locating}
           title="Sort by distance from your location"
         >
-          {locating ? '…' : '📍'} Near me
+          <LocateFixed size={16} /> {locating ? 'Locating…' : 'Near me'}
         </button>
         <select
           className="select"
@@ -72,7 +75,7 @@ export default function FilterBar({ meta, filters, onChange, userLocation, onLoc
             className={`chip ${filters.amenities.includes(a.key) ? 'active' : ''}`}
             onClick={() => toggle('amenities', a.key)}
           >
-            <span aria-hidden="true">{a.icon}</span> {a.label}
+            <AmenityIcon amenity={a.key} size={15} /> {a.label}
           </button>
         ))}
         {activeCount > 0 && (
@@ -83,7 +86,7 @@ export default function FilterBar({ meta, filters, onChange, userLocation, onLoc
               onChange({ ...filters, access: [], amenities: [], minRating: '' })
             }
           >
-            ✕ Clear filters ({activeCount})
+            <X size={14} /> Clear filters ({activeCount})
           </button>
         )}
       </div>

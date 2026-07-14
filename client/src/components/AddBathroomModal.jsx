@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { MapPin, X } from 'lucide-react';
 import { createBathroom } from '../api.js';
 import { StarInput } from './StarRating.jsx';
+import { AmenityIcon } from '../icons.jsx';
 
 export default function AddBathroomModal({ meta, location, onClose, onCreated }) {
   const [name, setName] = useState('');
@@ -45,11 +47,11 @@ export default function AddBathroomModal({ meta, location, onClose, onCreated })
         <div className="modal-head">
           <h2>Add a bathroom</h2>
           <button type="button" className="btn btn-icon" onClick={onClose} aria-label="Close">
-            ✕
+            <X size={16} />
           </button>
         </div>
         <p className="muted modal-location">
-          📍 Location: {location.lat.toFixed(5)}, {location.lng.toFixed(5)}
+          <MapPin size={14} /> Location: {location.lat.toFixed(5)}, {location.lng.toFixed(5)}
         </p>
         <form onSubmit={submit} className="add-form">
           <label>
@@ -114,7 +116,7 @@ export default function AddBathroomModal({ meta, location, onClose, onCreated })
                   className={`chip ${amenities.includes(a.key) ? 'active' : ''}`}
                   onClick={() => toggleAmenity(a.key)}
                 >
-                  <span aria-hidden="true">{a.icon}</span> {a.label}
+                  <AmenityIcon amenity={a.key} size={15} /> {a.label}
                 </button>
               ))}
             </div>

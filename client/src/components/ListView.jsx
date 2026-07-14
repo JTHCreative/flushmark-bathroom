@@ -1,4 +1,6 @@
+import { MapPinOff, Navigation } from 'lucide-react';
 import { Stars } from './StarRating.jsx';
+import { AmenityIcon } from '../icons.jsx';
 import { directionsUrl } from '../api.js';
 
 export function formatDistance(km) {
@@ -20,7 +22,7 @@ export default function ListView({ bathrooms, meta, selectedId, onSelect }) {
   if (bathrooms.length === 0) {
     return (
       <div className="empty-state">
-        <div className="empty-emoji" aria-hidden="true">🧻</div>
+        <MapPinOff size={44} className="empty-icon" aria-hidden="true" />
         <p>No bathrooms match your filters.</p>
         <p className="muted">Try clearing a filter — or add the first one in this area!</p>
       </div>
@@ -57,9 +59,12 @@ export default function ListView({ bathrooms, meta, selectedId, onSelect }) {
               <AccessBadge access={b.access} accessTypes={meta.accessTypes} />
               <span className="card-amenities">
                 {b.amenities.map((key) => (
-                  <span key={key} title={amenityByKey[key]?.label} aria-label={amenityByKey[key]?.label}>
-                    {amenityByKey[key]?.icon}
-                  </span>
+                  <AmenityIcon
+                    key={key}
+                    amenity={key}
+                    size={16}
+                    label={amenityByKey[key]?.label}
+                  />
                 ))}
               </span>
             </div>
@@ -71,7 +76,7 @@ export default function ListView({ bathrooms, meta, selectedId, onSelect }) {
                 rel="noreferrer"
                 onClick={(e) => e.stopPropagation()}
               >
-                🧭 Directions
+                <Navigation size={13} /> Directions
               </a>
               <button
                 type="button"

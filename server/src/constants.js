@@ -5,15 +5,15 @@ export const ACCESS_TYPES = [
 ];
 
 export const AMENITIES = [
-  { key: 'shower', label: 'Shower', icon: '🚿' },
-  { key: 'baby_changing', label: 'Baby changing table', icon: '🚼' },
-  { key: 'wheelchair_accessible', label: 'Wheelchair accessible', icon: '♿' },
-  { key: 'gender_neutral', label: 'Gender neutral', icon: '🚻' },
-  { key: 'menstrual_products', label: 'Menstrual products', icon: '🩸' },
-  { key: 'soap', label: 'Soap', icon: '🧼' },
-  { key: 'paper_towels', label: 'Paper towels', icon: '🧻' },
-  { key: 'hand_dryer', label: 'Hand dryer', icon: '💨' },
-  { key: 'toiletries', label: 'Free toiletries', icon: '🧴' },
+  { key: 'shower', label: 'Shower' },
+  { key: 'baby_changing', label: 'Baby changing table' },
+  { key: 'wheelchair_accessible', label: 'Wheelchair accessible' },
+  { key: 'gender_neutral', label: 'Gender neutral' },
+  { key: 'menstrual_products', label: 'Menstrual products' },
+  { key: 'soap', label: 'Soap' },
+  { key: 'paper_towels', label: 'Paper towels' },
+  { key: 'hand_dryer', label: 'Hand dryer' },
+  { key: 'toiletries', label: 'Free toiletries' },
 ];
 
 export const ACCESS_KEYS = ACCESS_TYPES.map((a) => a.key);

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { List, Map as MapIcon, MapPin, Moon, Plus, Sun, X } from 'lucide-react';
 import { fetchMeta, fetchBathrooms } from './api.js';
 import FilterBar from './components/FilterBar.jsx';
 import ListView from './components/ListView.jsx';
@@ -7,6 +8,12 @@ import DetailPanel from './components/DetailPanel.jsx';
 import AddBathroomModal from './components/AddBathroomModal.jsx';
 
 const EMPTY_FILTERS = { q: '', minRating: '', access: [], amenities: [], sort: 'rating' };
+
+function initialTheme() {
+  const saved = localStorage.getItem('flushmark-theme');
+  if (saved === 'light' || saved === 'dark') return saved;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
 
 export default function App() {
   const [meta, setMeta] = useState(null);
@@ -20,6 +27,12 @@ export default function App() {
   const [pendingLocation, setPendingLocation] = useState(null);
   const [loadError, setLoadError] = useState('');
   const [toast, setToast] = useState('');
+  const [theme, setTheme] = useState(initialTheme);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem('flushmark-theme', theme);
+  }, [theme]);
 
   useEffect(() => {
     fetchMeta().then(setMeta).catch((err) => setLoadError(err.message));
@@ -104,15 +117,28 @@ export default function App() {
     <div className="app">
       <header className="header">
         <div className="brand">
-          <span className="brand-mark" aria-hidden="true">🚻</span>
+          <span className="brand-mark" aria-hidden="true">
+            <MapPin size={22} strokeWidth={2.25} />
+          </span>
           <div>
             <h1>FlushMark</h1>
             <p className="tagline">Find & rate bathrooms near you</p>
           </div>
         </div>
-        <button type="button" className="btn btn-primary" onClick={startAdd}>
-          ＋ Add bathroom
-        </button>
+        <div className="header-actions">
+          <button
+            type="button"
+            className="btn btn-icon"
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+          >
+            {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
+          </button>
+          <button type="button" className="btn btn-primary" onClick={startAdd}>
+            <Plus size={16} /> Add bathroom
+          </button>
+        </div>
       </header>
 
       <FilterBar
@@ -165,14 +191,14 @@ export default function App() {
           className={mobileTab === 'map' ? 'active' : ''}
           onClick={() => setMobileTab('map')}
         >
-          🗺️ Map
+          <MapIcon size={16} /> Map
         </button>
         <button
           type="button"
           className={mobileTab === 'list' ? 'active' : ''}
           onClick={() => setMobileTab('list')}
         >
-          📋 List
+          <List size={16} /> List
         </button>
       </nav>
 

@@ -22,12 +22,16 @@ from your phone.
   and an optional first review.
 - **Installable PWA** — web app manifest included, so it can be added to a phone's
   home screen and runs in standalone mode.
+- **Light & dark mode** — earthy palette
+  ([EDEEC0 / 433E0E / 7C9082 / A7A284 / D0C88E](https://coolors.co/edeec0-433e0e-7c9082-a7a284-d0c88e))
+  with a header toggle; defaults to your system preference and persists, and map
+  tiles are darkened to match in dark mode.
 
 ## Stack
 
 | Layer    | Tech                                                                 |
 | -------- | -------------------------------------------------------------------- |
-| Frontend | React 19 + Vite, Leaflet / react-leaflet with OpenStreetMap tiles     |
+| Frontend | React 19 + Vite, Leaflet / react-leaflet with OpenStreetMap tiles, [lucide](https://lucide.dev/) icons |
 | Backend  | Node.js + Express 5                                                   |
 | Database | SQLite via better-sqlite3 (zero-config, file-based)                   |
 | Tests    | Node's built-in test runner (`node --test`)                           |

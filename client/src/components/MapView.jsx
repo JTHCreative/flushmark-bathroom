@@ -1,12 +1,18 @@
 import { useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents, Circle } from 'react-leaflet';
 import L from 'leaflet';
+import { Navigation } from 'lucide-react';
 import { Stars } from './StarRating.jsx';
 import { directionsUrl } from '../api.js';
 import { formatDistance } from './ListView.jsx';
 
 const DEFAULT_CENTER = [37.7793, -122.4193]; // San Francisco
 const DEFAULT_ZOOM = 13;
+
+const STAR_SVG =
+  '<svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true">' +
+  '<path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>' +
+  '</svg>';
 
 function ratingClass(rating) {
   if (rating == null) return 'pin-unrated';
@@ -20,7 +26,7 @@ function pinIcon(bathroom, selected) {
   return L.divIcon({
     className: '',
     html: `<div class="pin ${ratingClass(bathroom.avg_rating)} ${selected ? 'pin-selected' : ''}">
-             <span class="pin-emoji">🚻</span><span class="pin-rating">${label}</span>
+             ${STAR_SVG}<span class="pin-rating">${label}</span>
            </div>`,
     iconSize: [46, 46],
     iconAnchor: [23, 44],
@@ -71,7 +77,7 @@ export default function MapView({
         <Circle
           center={[userLocation.lat, userLocation.lng]}
           radius={80}
-          pathOptions={{ color: '#2563eb', fillColor: '#3b82f6', fillOpacity: 0.35 }}
+          pathOptions={{ color: '#7C9082', fillColor: '#7C9082', fillOpacity: 0.35 }}
         />
       )}
       {bathrooms.map((b) => (
@@ -91,7 +97,7 @@ export default function MapView({
               {b.distance_km != null && <div>{formatDistance(b.distance_km)} away</div>}
               <div className="popup-actions">
                 <a href={directionsUrl(b.lat, b.lng)} target="_blank" rel="noreferrer">
-                  🧭 Directions
+                  <Navigation size={12} /> Directions
                 </a>
                 <button type="button" onClick={() => onSelect(b.id)}>
                   Details
