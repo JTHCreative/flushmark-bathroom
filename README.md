@@ -7,8 +7,9 @@ from your phone.
 ## Features
 
 - **Map + list browsing** — split view on desktop, a Map/List tab switcher on mobile.
-  Map pins are color-coded by rating (green ≥ 4★, amber ≥ 3★, red below) and show the
-  average rating at a glance.
+  Clean, modern basemap (CARTO Voyager in light mode, CARTO Dark Matter in dark mode —
+  no API key needed). Map pins are color-coded by rating (green ≥ 4★, amber ≥ 3★, red
+  below) and show the average rating at a glance.
 - **Ratings & reviews** — 1–5 star ratings with optional comments. Averages update live.
 - **Amenities** — shower, baby changing table, wheelchair access, gender neutral,
   menstrual products, soap, paper towels, hand dryer, free toiletries.
@@ -37,8 +38,8 @@ from your phone.
 | Database | SQLite via better-sqlite3 (zero-config, file-based)                   |
 | Tests    | Node's built-in test runner (`node --test`)                           |
 
-No API keys are required — map tiles come from OpenStreetMap and directions use
-public Google Maps URLs.
+No API keys are required — map tiles come from CARTO's free basemaps (OSM data)
+and directions use public Google Maps URLs.
 
 ## Getting started
 

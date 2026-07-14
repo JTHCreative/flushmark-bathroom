@@ -169,6 +169,7 @@ export default function App() {
         </aside>
         <section className="map-wrap">
           <MapView
+            theme={theme}
             bathrooms={bathrooms}
             selectedId={selectedId}
             onSelect={(id) => {

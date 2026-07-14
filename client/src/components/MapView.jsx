@@ -9,6 +9,21 @@ import { formatDistance } from './ListView.jsx';
 const DEFAULT_CENTER = [37.7793, -122.4193]; // San Francisco
 const DEFAULT_ZOOM = 13;
 
+// CARTO basemaps: clean, Google-Maps-like cartography on OSM data, no API key.
+// Voyager for light mode; a true dark basemap for dark mode.
+const TILES = {
+  light: {
+    url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  },
+  dark: {
+    url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  },
+};
+
 const STAR_SVG =
   '<svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true">' +
   '<path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>' +
@@ -59,7 +74,9 @@ export default function MapView({
   userLocation,
   addMode,
   onPickLocation,
+  theme = 'light',
 }) {
+  const tiles = TILES[theme] ?? TILES.light;
   return (
     <MapContainer
       center={DEFAULT_CENTER}
@@ -67,10 +84,7 @@ export default function MapView({
       className={`map ${addMode ? 'map-adding' : ''}`}
       scrollWheelZoom
     >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+      <TileLayer key={theme} attribution={tiles.attribution} url={tiles.url} />
       <FlyToSelection bathrooms={bathrooms} selectedId={selectedId} />
       <ClickToPlace enabled={addMode} onPick={onPickLocation} />
       {userLocation && (
