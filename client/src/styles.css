@@ -4,61 +4,65 @@
  */
 
 :root {
-  --primary: #7c9082;
-  --primary-strong: #5f7264;
-  --primary-tint: #e4eae2;
-  --bg: #edeec0;
-  --surface: #fbfbea;
-  --text: #433e0e;
-  --muted: #837c52;
-  --border: #d6d3a4;
+  --primary: #8a8471;
+  --primary-strong: #6e6955;
+  --primary-tint: #e9e5d8;
+  --bg: #eae6d8;
+  --surface: #f7f4ea;
+  --text: #3e3a2c;
+  --muted: #857f6e;
+  --border: #d6d1c0;
   --star: #a58e33;
-  --star-empty: #cfcaa0;
+  --star-empty: #d1ccb9;
   --danger: #9c4a2f;
-  --banner-bg: #e6e0ab;
-  --banner-text: #5d5314;
-  --badge-public-bg: #dde6d9;
-  --badge-public-text: #3c5244;
+  --banner-bg: #e4ddc4;
+  --banner-text: #5d5430;
+  --badge-public-bg: #dfe2d3;
+  --badge-public-text: #4a5142;
   --badge-customers-bg: #ecdfa9;
   --badge-customers-text: #6b5a1c;
-  --badge-private-bg: #e3d6c2;
-  --badge-private-text: #6d4f24;
+  --badge-private-bg: #e2d5c1;
+  --badge-private-text: #6d5230;
+  --pin-great: #6f7d6a;
+  --pin-great-text: #515c4d;
   --pin-ok: #c2a24b;
   --pin-ok-text: #6b5a1c;
   --pin-poor: #a85f4f;
   --pin-poor-text: #82402f;
-  --toast-bg: #433e0e;
-  --toast-text: #edeec0;
+  --toast-bg: #3e3a2c;
+  --toast-text: #eae6d8;
   --radius: 12px;
-  --shadow: 0 1px 3px rgb(67 62 14 / 0.1), 0 4px 12px rgb(67 62 14 / 0.08);
+  --shadow: 0 1px 3px rgb(62 58 44 / 0.1), 0 4px 12px rgb(62 58 44 / 0.08);
 }
 
 [data-theme='dark'] {
-  --primary: #7c9082;
-  --primary-strong: #96a89b;
-  --primary-tint: #38423a;
-  --bg: #22200f;
-  --surface: #302d18;
-  --text: #edeec0;
-  --muted: #a7a284;
-  --border: #4c4728;
+  --primary: #a7a284;
+  --primary-strong: #bdb79b;
+  --primary-tint: #3d3a2f;
+  --bg: #232119;
+  --surface: #302d24;
+  --text: #e8e4d3;
+  --muted: #a49e8c;
+  --border: #4b4739;
   --star: #d0c88e;
-  --star-empty: #555032;
+  --star-empty: #575243;
   --danger: #d98f74;
-  --banner-bg: #45401f;
-  --banner-text: #e4dda5;
-  --badge-public-bg: #3a4a3e;
-  --badge-public-text: #c6d8ca;
+  --banner-bg: #443f2c;
+  --banner-text: #e4dcb8;
+  --badge-public-bg: #444a3d;
+  --badge-public-text: #cdd4c4;
   --badge-customers-bg: #554a20;
   --badge-customers-text: #e6dda9;
   --badge-private-bg: #4e4430;
   --badge-private-text: #ddd0b3;
+  --pin-great: #9db092;
+  --pin-great-text: #9db092;
   --pin-ok: #d0c88e;
   --pin-ok-text: #d0c88e;
   --pin-poor: #c47a66;
   --pin-poor-text: #c47a66;
-  --toast-bg: #edeec0;
-  --toast-text: #433e0e;
+  --toast-bg: #e8e4d3;
+  --toast-text: #3e3a2c;
   --shadow: 0 1px 3px rgb(0 0 0 / 0.4), 0 4px 14px rgb(0 0 0 / 0.35);
 }
 
@@ -189,7 +193,7 @@ body {
 }
 
 [data-theme='dark'] .btn-primary {
-  color: #1d2a20;
+  color: #2a281d;
 }
 
 .btn-small {
@@ -294,7 +298,7 @@ body {
 }
 
 [data-theme='dark'] .chip.active {
-  color: #1d2a20;
+  color: #2a281d;
 }
 
 .chip.active .amenity-icon {
@@ -307,7 +311,7 @@ body {
 }
 
 [data-theme='dark'] .chip-access.active {
-  color: #1d2a20;
+  color: #2a281d;
 }
 
 .chip-clear {
@@ -570,8 +574,8 @@ body {
 }
 
 .pin-great {
-  border-color: var(--primary);
-  color: var(--primary-strong);
+  border-color: var(--pin-great);
+  color: var(--pin-great-text);
 }
 
 .pin-ok {
@@ -970,6 +974,6 @@ body {
   }
 
   [data-theme='dark'] .mobile-tabs button.active {
-    color: #1d2a20;
+    color: #2a281d;
   }
 }

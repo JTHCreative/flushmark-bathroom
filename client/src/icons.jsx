@@ -15,13 +15,13 @@ import {
 export const AMENITY_ICONS = {
   shower: { Icon: ShowerHead, color: '#5e8ca8' },
   baby_changing: { Icon: Baby, color: '#c2a24b' },
-  wheelchair_accessible: { Icon: Accessibility, color: '#7C9082' },
+  wheelchair_accessible: { Icon: Accessibility, color: '#8a8471' },
   gender_neutral: { Icon: Users, color: '#97839b' },
   menstrual_products: { Icon: Droplet, color: '#a85f4f' },
   soap: { Icon: Sparkles, color: '#b0879b' },
   paper_towels: { Icon: Scroll, color: '#A7A284' },
   hand_dryer: { Icon: Wind, color: '#7f8f9c' },
-  toiletries: { Icon: SprayCan, color: '#8f9a5b' },
+  toiletries: { Icon: SprayCan, color: '#9a9057' },
 };
 
 export function AmenityIcon({ amenity, size = 16, label }) {

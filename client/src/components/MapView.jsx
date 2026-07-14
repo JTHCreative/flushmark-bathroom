@@ -77,7 +77,7 @@ export default function MapView({
         <Circle
           center={[userLocation.lat, userLocation.lng]}
           radius={80}
-          pathOptions={{ color: '#7C9082', fillColor: '#7C9082', fillOpacity: 0.35 }}
+          pathOptions={{ color: '#8a8471', fillColor: '#8a8471', fillOpacity: 0.35 }}
         />
       )}
       {bathrooms.map((b) => (
