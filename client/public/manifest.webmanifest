@@ -4,7 +4,7 @@
   "description": "Find and rate bathrooms near you — browse a map, filter by amenities, and get directions.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#EAE6D8",
+  "background_color": "#ECECEA",
   "theme_color": "#A7A284",
   "icons": [
     {

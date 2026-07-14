@@ -22,11 +22,11 @@ from your phone.
   and an optional first review.
 - **Installable PWA** — web app manifest included, so it can be added to a phone's
   home screen and runs in standalone mode.
-- **Light & dark mode** — earthy palette based on
-  [EDEEC0 / 433E0E / 7C9082 / A7A284 / D0C88E](https://coolors.co/edeec0-433e0e-7c9082-a7a284-d0c88e),
-  weighted toward its tan and warm-grey tones, with a header toggle; defaults to
-  your system preference and persists, and map tiles are darkened to match in
-  dark mode.
+- **Light & dark mode** — neutral grey foundations (light grey / dark charcoal)
+  with tan and gold accents drawn from
+  [EDEEC0 / 433E0E / 7C9082 / A7A284 / D0C88E](https://coolors.co/edeec0-433e0e-7c9082-a7a284-d0c88e).
+  Header toggle; defaults to your system preference and persists, and map tiles
+  are darkened to match in dark mode.
 
 ## Stack
 
